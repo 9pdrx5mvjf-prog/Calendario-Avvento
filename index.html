@@ -230,6 +230,135 @@
         }
 
         /* =====================================================================
+           2B. BUSTA DA LETTERA BIANCA & FOGLIO PERGAMENA PRIMA DEL LOGIN
+           ===================================================================== */
+        .envelope-perspective {
+            perspective: 1200px;
+        }
+
+        .envelope-body {
+            position: relative;
+            width: 100%;
+            max-width: 340px;
+            height: 205px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #ffffff 0%, #f5efe6 100%);
+            border-radius: 14px;
+            border: 2px solid #d4af37;
+            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.85), 0 0 26px rgba(212, 175, 55, 0.28);
+            cursor: pointer;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+            transform-style: preserve-3d;
+        }
+
+        .envelope-body:hover {
+            transform: translateY(-5px) scale(1.025);
+            box-shadow: 0 28px 55px rgba(0, 0, 0, 0.9), 0 0 35px rgba(247, 231, 180, 0.5);
+        }
+
+        .envelope-pocket {
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .envelope-pocket::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #f8f4ec 50%, transparent 50.5%),
+                        linear-gradient(225deg, #efe8dc 50%, transparent 50.5%);
+            opacity: 0.95;
+        }
+
+        .envelope-pocket::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 62%;
+            background: linear-gradient(180deg, #fcf9f2 0%, #ede4d5 100%);
+            clip-path: polygon(0 100%, 50% 18%, 100% 100%);
+            border-top: 1px solid rgba(212, 175, 55, 0.45);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 58%;
+            background: linear-gradient(180deg, #ffffff 0%, #ebe2d3 100%);
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top center;
+            transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 4;
+            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.22));
+        }
+
+        .envelope-body.is-open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .wax-seal {
+            position: absolute;
+            top: 47%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #c92a30 0%, #7a1216 75%, #4d090c 100%);
+            border: 2px solid #f7e7b4;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.55), inset 0 2px 5px rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .envelope-body.is-open .wax-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+            pointer-events: none;
+        }
+
+        .letter-peek-card {
+            position: absolute;
+            left: 14px;
+            right: 14px;
+            bottom: 14px;
+            height: 155px;
+            background: #fffdf9;
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            z-index: 2;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.12);
+        }
+
+        .envelope-body.is-open .letter-peek-card {
+            transform: translateY(-78px);
+        }
+
+        #letterModalOverlay {
+            background: rgba(4, 14, 9, 0.86);
+            backdrop-filter: blur(8px);
+        }
+
+        .parchment-sheet {
+            background: radial-gradient(circle at 50% 20%, #fffef9 0%, #f8efe0 100%);
+            border: 3px solid #d4af37;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), inset 0 0 40px rgba(212, 175, 55, 0.25);
+        }
+
+        /* =====================================================================
            3. TEXTURE NATALIZIE PER LE 25 CASELLE
            ===================================================================== */
         .tex-velvet-red {
@@ -579,33 +708,56 @@
         </div>
 
         <div id="boxCenterPlaque" class="w-full max-w-md px-4">
-            <div class="relative bg-gradient-to-b from-[#173a29] via-[#0f291c] to-[#091a11] border-[3px] border-[#d4af37] rounded-3xl p-7 sm:p-9 shadow-[0_25px_65px_rgba(0,0,0,0.95),0_0_35px_rgba(212,175,55,0.28)] text-center">
-                
-                <div class="mx-auto -mt-16 mb-3 w-36 h-20 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-                    <svg viewBox="0 0 200 110" class="w-full h-full drop-shadow-[0_10px_14px_rgba(0,0,0,0.85)]">
-                        <defs>
-                            <linearGradient id="bowRed" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#e63e45"/>
-                                <stop offset="50%" stop-color="#a81c22"/>
-                                <stop offset="100%" stop-color="#5e0d11"/>
-                            </linearGradient>
-                            <linearGradient id="bowGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#fff1b8"/>
-                                <stop offset="50%" stop-color="#d4af37"/>
-                                <stop offset="100%" stop-color="#8a6210"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M88,58 L48,104 L68,102 L76,108 L96,64 Z" fill="url(#bowRed)" stroke="url(#bowGold)" stroke-width="2"/>
-                        <path d="M112,58 L152,104 L132,102 L124,108 L104,64 Z" fill="url(#bowRed)" stroke="url(#bowGold)" stroke-width="2"/>
-                        <path d="M95,48 C62,12 16,22 22,52 C28,80 68,72 95,55 Z" fill="url(#bowRed)" stroke="url(#bowGold)" stroke-width="2.5"/>
-                        <path d="M90,50 C68,30 42,35 45,51 C48,65 72,60 90,53 Z" fill="#5e0d11" opacity="0.55"/>
-                        <path d="M105,48 C138,12 184,22 178,52 C172,80 132,72 105,55 Z" fill="url(#bowRed)" stroke="url(#bowGold)" stroke-width="2.5"/>
-                        <path d="M110,50 C132,30 158,35 155,51 C152,65 128,60 110,53 Z" fill="#5e0d11" opacity="0.55"/>
-                        <rect x="86" y="38" width="28" height="28" rx="8" fill="url(#bowRed)" stroke="url(#bowGold)" stroke-width="2.5"/>
-                        <circle cx="100" cy="52" r="5" fill="url(#bowGold)"/>
-                    </svg>
-                </div>
+            
+            <!-- FIOCCO ROSSO E ORO IN ALTO (SEMPRE VISIBILE PRIMA SULLA BUSTA E POI SUL RIQUADRO NOME) -->
+            <div class="mx-auto -mb-6 relative z-20 w-36 h-20 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+                <svg viewBox="0 0 200 110" class="w-full h-full drop-shadow-[0_10px_14px_rgba(0,0,0,0.85)]">
+                    <defs>
+                        <linearGradient id="bowRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#e63e45"/>
+                            <stop offset="50%" stop-color="#a81c22"/>
+                            <stop offset="100%" stop-color="#5e0d11"/>
+                        </linearGradient>
+                        <linearGradient id="bowGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fff1b8"/>
+                            <stop offset="50%" stop-color="#d4af37"/>
+                            <stop offset="100%" stop-color="#8a6210"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M88,58 L48,104 L68,102 L76,108 L96,64 Z" fill="url(#bowRed)" stroke="url(#bowGold)" stroke-width="2"/>
+                    <path d="M112,58 L152,104 L132,102 L124,108 L104,64 Z" fill="url(#bowRed)" stroke="url(#bowGold)" stroke-width="2"/>
+                    <path d="M95,48 C62,12 16,22 22,52 C28,80 68,72 95,55 Z" fill="url(#bowRed)" stroke="url(#bowGold)" stroke-width="2.5"/>
+                    <path d="M90,50 C68,30 42,35 45,51 C48,65 72,60 90,53 Z" fill="#5e0d11" opacity="0.55"/>
+                    <path d="M105,48 C138,12 184,22 178,52 C172,80 132,72 105,55 Z" fill="url(#bowRed)" stroke="url(#bowGold)" stroke-width="2.5"/>
+                    <path d="M110,50 C132,30 158,35 155,51 C152,65 128,60 110,53 Z" fill="#5e0d11" opacity="0.55"/>
+                    <rect x="86" y="38" width="28" height="28" rx="8" fill="url(#bowRed)" stroke="url(#bowGold)" stroke-width="2.5"/>
+                    <circle cx="100" cy="52" r="5" fill="url(#bowGold)"/>
+                </svg>
+            </div>
 
+            <!-- STEP 1: BUSTA DA LETTERA BIANCA SOTTO AL FIOCCO -->
+            <div id="envelopeIntroStage" class="envelope-perspective pt-4 pb-2 text-center transition-all duration-500">
+                <div id="whiteEnvelopeBtn" class="envelope-body" role="button" tabindex="0" aria-label="Apri la busta da lettera">
+                    <div class="letter-peek-card flex items-start justify-center pt-3 px-4">
+                        <span class="font-script text-2xl text-[#7a1c1c]">Per te, amore mio...</span>
+                    </div>
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-pocket"></div>
+                    <div class="wax-seal">
+                        <i class="fa-solid fa-heart text-[#f7e7b4] text-lg"></i>
+                    </div>
+                    <div class="absolute bottom-3 left-0 right-0 z-10 text-center pointer-events-none">
+                        <span class="font-script text-2xl text-[#5c280e] block leading-none">Una lettera per te</span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-[#7a1c1c] font-semibold mt-1 inline-block">
+                            <i class="fa-solid fa-hand-pointer mr-1"></i> Clicca per aprire la busta
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: RIQUADRO NOME E APERTURA SCATOLA (APPARE DOPO AVER CHIUSO IL FOGLIO) -->
+            <div id="boxLoginCard" class="hidden opacity-0 scale-95 transition-all duration-500 relative bg-gradient-to-b from-[#173a29] via-[#0f291c] to-[#091a11] border-[3px] border-[#d4af37] rounded-3xl pt-9 p-7 sm:p-9 shadow-[0_25px_65px_rgba(0,0,0,0.95),0_0_35px_rgba(212,175,55,0.28)] text-center">
+                
                 <div class="border border-dashed border-[#d4af37]/55 rounded-2xl p-5 sm:p-6">
                     <p class="text-[11px] uppercase tracking-[0.28em] text-[#f7e7b4]/85 font-semibold mb-1.5">
                         Edizione Speciale • Natale 2026
@@ -639,10 +791,62 @@
                             class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#b88621] via-[#f0d57c] to-[#b88621] hover:from-[#cca029] hover:via-[#fff0b3] hover:to-[#cca029] text-[#3b0d0e] font-bold tracking-wide border-2 border-[#fff3c4] shadow-[0_10px_25px_rgba(212,175,55,0.45)] transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer text-sm sm:text-base"
                         >
                             <i class="fa-solid fa-gift text-[#7a1c1c]"></i>
-                            <span>Apri la Scatola Magica</span>
+                            <span>Apri il Calendario dell'Avvento</span>
                             <i class="fa-solid fa-sparkles text-[#7a1c1c]"></i>
                         </button>
                     </form>
+
+                    <button id="reopenLetterBtn" type="button" class="mt-4 inline-flex items-center gap-1.5 text-xs text-[#f7e7b4]/80 hover:text-[#fff8e7] underline decoration-[#d4af37]/60 transition cursor-pointer">
+                        <i class="fa-solid fa-envelope-open-text text-[#d4af37]"></i>
+                        <span>Rileggi la lettera</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         1B. MODALE FOGLIO DA LETTERA ESTRATTO DALLA BUSTA (MODIFICABILE)
+         ===================================================================== -->
+    <div id="letterModalOverlay" class="fixed inset-0 z-[10050] hidden items-center justify-center p-4 opacity-0 transition-opacity duration-400" aria-modal="true" role="dialog" aria-label="Foglio da lettera">
+        <div id="letterSheetContainer" class="parchment-sheet relative w-full max-w-lg rounded-2xl p-6 sm:p-9 text-[#3b1515] transform translate-y-8 scale-95 transition-all duration-500">
+            
+            <div class="border border-dashed border-[#d4af37]/75 rounded-xl p-5 sm:p-6">
+                <div class="flex items-center justify-between border-b border-[#d4af37]/45 pb-3 mb-4">
+                    <span class="text-[11px] uppercase tracking-[0.22em] text-[#7a1c1c] font-bold">
+                        <i class="fa-solid fa-feather-pointed text-[#b88621] mr-1.5"></i> Lettera per Te
+                    </span>
+                    <span class="font-serif-body italic text-xs text-[#7a1c1c]/80">Natale 2026</span>
+                </div>
+
+                <!-- Foglio da lettera con testo liberamente modificabile -->
+                <div 
+                    id="customLetterContent" 
+                    contenteditable="true" 
+                    spellcheck="false"
+                    class="font-serif-body text-base sm:text-lg leading-relaxed text-[#2c1212] min-h-[210px] max-h-[52vh] overflow-y-auto p-3 rounded-xl bg-white/55 border border-[#d4af37]/35 focus:outline-none focus:border-[#7a1c1c] focus:bg-white/85 transition whitespace-pre-wrap"
+                >Amore mio,
+
+prima di aprire la prima casella di questo Calendario dell'Avvento, volevo lasciarti qui qualche parola scritta con il cuore...
+
+(Clicca qui sopra per scrivere o personalizzare direttamente la tua lettera prima di chiudere il foglio!)
+
+Con tutto il mio amore,
+Tuo per sempre ❤️</div>
+
+                <div class="mt-5 pt-3 border-t border-[#d4af37]/40 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <span class="text-[11px] text-[#7a1c1c]/80 italic">
+                        <i class="fa-solid fa-pen-nib mr-1 text-[#b88621]"></i> Il testo che scrivi qui si salva automaticamente
+                    </span>
+
+                    <button 
+                        id="closeLetterSheetBtn" 
+                        type="button" 
+                        class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#7a1c1c] to-[#a81c22] hover:from-[#962222] hover:to-[#c2232a] text-[#fff8e7] font-semibold text-sm border border-[#f7e7b4] shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                        <span>Chiudi il foglio</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -2046,8 +2250,83 @@
         const modalMessage = document.getElementById('modalMessage');
 
         /* =====================================================================
-           3. APERTURA SCATOLA 3D ALL'INGRESSO E SBLOCCO SCROLL
+           3. APERTURA BUSTA DA LETTERA, FOGLIO & SCATOLA 3D ALL'INGRESSO
            ===================================================================== */
+        const envelopeIntroStage = document.getElementById('envelopeIntroStage');
+        const whiteEnvelopeBtn = document.getElementById('whiteEnvelopeBtn');
+        const boxLoginCard = document.getElementById('boxLoginCard');
+        const letterModalOverlay = document.getElementById('letterModalOverlay');
+        const letterSheetContainer = document.getElementById('letterSheetContainer');
+        const customLetterContent = document.getElementById('customLetterContent');
+        const closeLetterSheetBtn = document.getElementById('closeLetterSheetBtn');
+        const reopenLetterBtn = document.getElementById('reopenLetterBtn');
+
+        // Ripristina eventuale lettera personalizzata salvata nel browser
+        const savedLetterText = localStorage.getItem('avvento_custom_letter');
+        if (savedLetterText !== null) {
+            customLetterContent.innerText = savedLetterText;
+        }
+
+        customLetterContent.addEventListener('input', () => {
+            localStorage.setItem('avvento_custom_letter', customLetterContent.innerText);
+        });
+
+        function openLetterFromEnvelope() {
+            whiteEnvelopeBtn.classList.add('is-open');
+            playChimeSound(false);
+
+            setTimeout(() => {
+                letterModalOverlay.classList.remove('hidden');
+                letterModalOverlay.classList.add('flex');
+                requestAnimationFrame(() => {
+                    letterModalOverlay.classList.remove('opacity-0');
+                    letterSheetContainer.classList.remove('translate-y-8', 'scale-95');
+                    letterSheetContainer.classList.add('translate-y-0', 'scale-100');
+                });
+            }, 580);
+        }
+
+        function closeLetterAndShowLogin() {
+            localStorage.setItem('avvento_custom_letter', customLetterContent.innerText);
+
+            letterModalOverlay.classList.add('opacity-0');
+            letterSheetContainer.classList.remove('translate-y-0', 'scale-100');
+            letterSheetContainer.classList.add('translate-y-8', 'scale-95');
+
+            setTimeout(() => {
+                letterModalOverlay.classList.add('hidden');
+                letterModalOverlay.classList.remove('flex');
+                whiteEnvelopeBtn.classList.remove('is-open');
+
+                // Nasconde la busta e mostra il riquadro del nome sotto al fiocco
+                envelopeIntroStage.classList.add('hidden');
+                boxLoginCard.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    boxLoginCard.classList.remove('opacity-0', 'scale-95');
+                    boxLoginCard.classList.add('opacity-100', 'scale-100');
+                });
+            }, 400);
+        }
+
+        whiteEnvelopeBtn.addEventListener('click', openLetterFromEnvelope);
+        whiteEnvelopeBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLetterFromEnvelope();
+            }
+        });
+
+        closeLetterSheetBtn.addEventListener('click', closeLetterAndShowLogin);
+
+        reopenLetterBtn.addEventListener('click', () => {
+            boxLoginCard.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                boxLoginCard.classList.add('hidden');
+                envelopeIntroStage.classList.remove('hidden');
+                openLetterFromEnvelope();
+            }, 300);
+        });
+
         if (savedName) {
             girlfriendNameInput.value = savedName;
         }
